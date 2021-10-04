@@ -30,7 +30,7 @@ void filling_file(my_file &cur_file)
     int i = 0;
     while (i < 50)
     {
-        cur_file.edit << get_random_number() << std::endl;
+        cur_file.edit << " " << get_random_number() << " " << std::endl;
         i++;
     }
     cur_file.edit.close();
@@ -46,7 +46,7 @@ my_file glue_file(my_file &first_file, my_file &second_file)
     second_file.read.open(second_file.name);
     if (new_file.edit.is_open() && first_file.read.is_open() && second_file.read.is_open()) // Если все файлы отурыты
      {
-     while (!first_file.read.eof() || !second_file.read.eof()) // Пока не конец файлов
+     while (!first_file.read.eof() || !second_file.read.eof()) // Читаем файлы до конца!
      {
          //Записываем строки в новый файл:
          std::string buffer;
@@ -60,8 +60,32 @@ my_file glue_file(my_file &first_file, my_file &second_file)
         first_file.read.close();
         second_file.read.close();
      }
-    return {};
+    return new_file;
 
 }
+
+void find_string_in_file(my_file &cur_file)
+{
+    cur_file.read.open(cur_file.name);
+    std::string find_item;
+    std::cin >> find_item;
+    find_item = " " + find_item + " "; // Из-за того, что числа разделены
+    std::string buffer;
+    while (!cur_file.read.eof())
+    {
+        std::getline(cur_file.read, buffer);
+        if (buffer == find_item)
+        {
+            std::cout << "Yes!";
+            break;
+        }
+    }
+}
+
+
+
+
+
+
 
 

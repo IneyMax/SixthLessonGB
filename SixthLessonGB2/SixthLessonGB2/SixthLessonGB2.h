@@ -17,6 +17,8 @@ void filling_file(my_file &cur_file);
 //Создаём третий файл и помещаем в него первые два
 my_file glue_file(my_file &first_file, my_file &second_file);
 
+//Функция для поиска введёного числа в указанном файле 
+void find_string_in_file(my_file &cur_file);
 
 
 
